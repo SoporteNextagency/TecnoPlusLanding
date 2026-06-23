@@ -1,0 +1,423 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#0A1628;
+    --navy2:#0F2040;
+    --cyan:#00B4D8;
+    --cyan2:#0096C7;
+    --lime:#7FE020;
+    --lime2:#6BC918;
+    --white:#FFFFFF;
+    --offwhite:#F0F4F8;
+    --text-muted:#8FA3BC;
+    --card-bg:#111E32;
+    --border:#1E3050;
+  }
+  body,html{font-family:'Inter',sans-serif;background:var(--navy);color:var(--white)}
+  .wrap{max-width:900px;margin:0 auto;padding:0 24px}
+
+  /* NAV */
+  nav{background:var(--navy);border-bottom:1px solid var(--border);padding:14px 0;position:sticky;top:0;z-index:100}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;gap:10px}
+  .logo-icon{width:34px;height:34px;background:var(--cyan);border-radius:8px;display:flex;align-items:center;justify-content:center}
+  .logo-icon svg{width:20px;height:20px}
+  .logo-text{font-size:15px;font-weight:700;letter-spacing:0.3px}
+  .logo-sub{font-size:10px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{color:var(--text-muted);font-size:13px;text-decoration:none;cursor:pointer;transition:color .2s}
+  .nav-links a:hover{color:var(--white)}
+  .btn-admin{background:transparent;border:1px solid var(--cyan);color:var(--cyan);padding:7px 16px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s}
+  .btn-admin:hover{background:var(--cyan);color:var(--navy)}
+
+  /* HERO */
+  .hero{padding:80px 0 72px;text-align:center;position:relative;overflow:hidden}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,180,216,0.12);border:1px solid rgba(0,180,216,0.3);border-radius:100px;padding:6px 16px;font-size:12px;color:var(--cyan);margin-bottom:28px;letter-spacing:0.5px}
+  .badge-dot{width:6px;height:6px;background:var(--lime);border-radius:50%;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .hero h1{font-size:42px;font-weight:700;line-height:1.15;max-width:700px;margin:0 auto 20px;letter-spacing:-0.5px}
+  .hero h1 span{color:var(--cyan)}
+  .hero p{font-size:17px;color:var(--text-muted);max-width:540px;margin:0 auto 40px;line-height:1.7}
+  .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn-primary{background:var(--cyan);color:var(--navy);padding:14px 30px;border-radius:8px;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .2s;letter-spacing:0.2px}
+  .btn-primary:hover{background:var(--cyan2);transform:translateY(-1px)}
+  .btn-secondary{background:transparent;color:var(--white);padding:14px 30px;border-radius:8px;font-size:14px;font-weight:500;border:1px solid var(--border);cursor:pointer;transition:all .2s}
+  .btn-secondary:hover{border-color:var(--text-muted)}
+  .hero-note{margin-top:18px;font-size:12px;color:var(--text-muted)}
+  .grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:40px 40px;opacity:0.25;z-index:-1}
+  .hero-fade{position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(transparent,var(--navy));z-index:0}
+
+  /* STATS */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:0 0 72px}
+  .stat-item{background:var(--card-bg);padding:24px;text-align:center}
+  .stat-num{font-size:32px;font-weight:700;color:var(--white)}
+  .stat-num span{color:var(--cyan)}
+  .stat-label{font-size:12px;color:var(--text-muted);margin-top:4px;letter-spacing:0.5px}
+
+  /* SECTION LABEL */
+  .eyebrow{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:12px}
+  .section-title{font-size:30px;font-weight:700;line-height:1.25;margin-bottom:12px;letter-spacing:-0.3px}
+  .section-sub{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:520px}
+
+  /* ABOUT */
+  .about{padding:0 0 72px}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:40px}
+  .pillar{display:flex;gap:16px;margin-bottom:28px}
+  .pillar:last-child{margin-bottom:0}
+  .pillar-icon{width:40px;height:40px;min-width:40px;background:rgba(0,180,216,0.1);border:1px solid rgba(0,180,216,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center}
+  .pillar-icon svg{width:18px;height:18px;stroke:var(--cyan);fill:none;stroke-width:1.8}
+  .pillar h4{font-size:14px;font-weight:600;margin-bottom:4px}
+  .pillar p{font-size:13px;color:var(--text-muted);line-height:1.6}
+  .about-quote{background:var(--card-bg);border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:10px;padding:24px;font-size:14px;color:var(--text-muted);line-height:1.7;font-style:italic}
+
+  /* SOLUTIONS */
+  .solutions{padding:0 0 72px}
+  .solutions-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:40px}
+  .sol-card{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:24px;transition:all .25s;cursor:pointer;position:relative;overflow:hidden}
+  .sol-card:hover{border-color:var(--cyan);transform:translateY(-2px)}
+  .sol-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--cyan);opacity:0;transition:opacity .25s}
+  .sol-card:hover::after{opacity:1}
+  .sol-tag{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:12px}
+  .sol-icon{width:42px;height:42px;background:rgba(0,180,216,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .sol-icon svg{width:20px;height:20px;stroke:var(--cyan);fill:none;stroke-width:1.8}
+  .sol-card h3{font-size:15px;font-weight:600;margin-bottom:8px}
+  .sol-card p{font-size:13px;color:var(--text-muted);line-height:1.6}
+  .sol-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--cyan);margin-top:16px;font-weight:500}
+  .sol-link svg{width:12px;height:12px;stroke:var(--cyan);fill:none;stroke-width:2}
+
+  /* SECURITY */
+  .security{padding:0 0 72px}
+  .sec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+  .sec-item{background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:20px}
+  .sec-item svg{width:22px;height:22px;stroke:var(--lime);fill:none;stroke-width:1.8;margin-bottom:12px}
+  .sec-item h4{font-size:13px;font-weight:600;margin-bottom:6px}
+  .sec-item p{font-size:12px;color:var(--text-muted);line-height:1.6}
+
+  /* CLIENTS */
+  .clients{padding:0 0 72px;text-align:center}
+  .clients-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:36px}
+  .client-slot{background:var(--card-bg);padding:24px 16px;display:flex;align-items:center;justify-content:center}
+  .client-placeholder{width:90px;height:32px;background:var(--border);border-radius:6px;opacity:0.5}
+
+  /* CTA */
+  .cta-section{padding:0 0 72px}
+  .cta-box{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  .cta-box h2{font-size:26px;font-weight:700;margin-bottom:12px;letter-spacing:-0.3px}
+  .cta-box p{font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:24px}
+  .trust-items{display:flex;flex-direction:column;gap:10px}
+  .trust-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-muted)}
+  .trust-check{width:18px;height:18px;min-width:18px;background:rgba(127,224,32,0.12);border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .trust-check svg{width:10px;height:10px;stroke:var(--lime);fill:none;stroke-width:2.5}
+  .form-group{margin-bottom:14px}
+  .form-group label{font-size:12px;color:var(--text-muted);display:block;margin-bottom:6px;letter-spacing:0.3px}
+  .form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--white);font-size:13px;font-family:inherit;outline:none;transition:border-color .2s}
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--cyan)}
+  .form-group select option{background:var(--navy2)}
+  .form-group textarea{resize:vertical;min-height:80px}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .btn-submit{width:100%;background:var(--cyan);color:var(--navy);padding:13px;border-radius:8px;font-size:14px;font-weight:700;border:none;cursor:pointer;margin-top:6px;transition:all .2s;letter-spacing:0.2px}
+  .btn-submit:hover{background:var(--cyan2)}
+  .form-privacy{font-size:11px;color:var(--text-muted);text-align:center;margin-top:10px;line-height:1.5}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--border);padding:36px 0 24px}
+  .footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:32px}
+  .footer-brand p{font-size:13px;color:var(--text-muted);margin-top:10px;line-height:1.6;max-width:240px}
+  .footer-col h5{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px}
+  .footer-col a{display:block;font-size:13px;color:var(--text-muted);text-decoration:none;margin-bottom:8px;cursor:pointer;transition:color .2s}
+  .footer-col a:hover{color:var(--white)}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid var(--border)}
+  .footer-copy{font-size:12px;color:var(--text-muted)}
+  .btn-admin-footer{background:var(--lime);color:var(--navy);padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;border:none;cursor:pointer;letter-spacing:0.3px;transition:all .2s}
+  .btn-admin-footer:hover{background:var(--lime2)}
+
+  /* DIVIDER */
+  .divider{height:1px;background:var(--border);margin:0 0 72px}
+</style>
+
+<h2 class="sr-only">Landing Page corporativa de Tecno Sistemas Plus — plataformas de gestión unificada para gobiernos locales</h2>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-inner">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0A1628" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="2" r="1.5" fill="#0A1628"/><circle cx="12" cy="22" r="1.5" fill="#0A1628"/><circle cx="2" cy="12" r="1.5" fill="#0A1628"/><circle cx="22" cy="12" r="1.5" fill="#0A1628"/></svg>
+      </div>
+      <div>
+        <div class="logo-text">Tecno Sistemas Plus</div>
+        <div class="logo-sub">Gestión Pública Digital</div>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a>Soluciones</a>
+      <a>Nosotros</a>
+      <a>Seguridad</a>
+      <a>Contacto</a>
+      <button class="btn-admin">🔐 Acceso Administrador</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="grid-bg"></div>
+  <div class="wrap" style="position:relative;z-index:1">
+    <div class="hero-badge"><span class="badge-dot"></span>Software para Administraciones Públicas</div>
+    <h1>Modernizamos la <span>Gestión Pública</span> con Tecnología que Funciona</h1>
+    <p>Plataformas digitales integradas para alcaldías, gobernaciones y entes de recaudación. Automatizamos sus procesos fiscales, controlamos sus servicios urbanos y le damos trazabilidad total sobre los recursos de su territorio.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="sendPrompt('Quiero solicitar una demostración gratuita de Tecno Sistemas Plus')">📋 Solicitar Demostración Gratuita</button>
+      <button class="btn-secondary">Ver nuestras soluciones →</button>
+    </div>
+    <p class="hero-note">Sin compromisos. Nuestro equipo le contacta en menos de 24 horas hábiles.</p>
+  </div>
+  <div class="hero-fade"></div>
+</section>
+
+<!-- STATS -->
+<div class="wrap">
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-num"><span>5</span></div>
+      <div class="stat-label">MÓDULOS INTEGRADOS</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100<span>%</span></div>
+      <div class="stat-label">PROCESOS AUDITABLES</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">24<span>/7</span></div>
+      <div class="stat-label">DISPONIBILIDAD EN LÍNEA</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="wrap">
+    <div class="eyebrow">Sobre Nosotros</div>
+    <div class="about-grid">
+      <div>
+        <h2 class="section-title">Tecnología al servicio de la administración pública</h2>
+        <p class="section-sub" style="margin-bottom:32px">Somos una empresa venezolana especializada en el desarrollo de soluciones digitales para el sector público. Nuestra misión: centralizar, transparentar y optimizar la gestión fiscal y los servicios urbanos de los gobiernos locales.</p>
+        <div class="about-quote">"Entendemos los desafíos únicos de la administración pública: aumentar la recaudación sin sobrecargar al contribuyente, controlar recursos estratégicos con trazabilidad total y ofrecer servicios digitales accesibles al ciudadano."</div>
+      </div>
+      <div>
+        <div class="pillar">
+          <div class="pillar-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <div><h4>Seguridad Institucional</h4><p>Cifrado en tránsito, respaldos automáticos y accesos controlados por perfil de usuario para proteger cada dato fiscal y civil.</p></div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <div><h4>Automatización Inteligente</h4><p>Eliminamos procesos manuales y cuellos de botella. Cada módulo reduce el tiempo de gestión y minimiza el error humano.</p></div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div><h4>Transparencia y Control</h4><p>Paneles de monitoreo en tiempo real y registros auditables de cada operación para decisiones basadas en datos confiables.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- SOLUTIONS -->
+<section class="solutions">
+  <div class="wrap">
+    <div class="eyebrow">Nuestras Soluciones</div>
+    <h2 class="section-title">Un ecosistema completo para la gestión pública unificada</h2>
+    <p class="section-sub">Cinco módulos diseñados para trabajar de forma integrada y adaptarse a las necesidades específicas de su institución.</p>
+    <div class="solutions-grid">
+
+      <div class="sol-card">
+        <div class="sol-tag">Recaudación</div>
+        <div class="sol-icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+        <h3>Taquilla Virtual</h3>
+        <p>Portal en línea para que el ciudadano consulte su estado de cuenta y realice pagos fiscales de forma segura, 24/7, sin acudir a taquillas presenciales.</p>
+        <div class="sol-link">Ver módulo <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+      </div>
+
+      <div class="sol-card">
+        <div class="sol-tag">Tributario</div>
+        <div class="sol-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <h3>Timbres Fiscales Digitales</h3>
+        <p>Emisión y validación de sellos tributarios digitales con código QR único. Elimina la falsificación documental y agiliza la recaudación de tasas oficiales.</p>
+        <div class="sol-link">Ver módulo <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+      </div>
+
+      <div class="sol-card">
+        <div class="sol-tag">Servicios Urbanos</div>
+        <div class="sol-icon"><svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></div>
+        <h3>Gestión de Desechos Sólidos</h3>
+        <p>Administración de cobranza del aseo urbano, planificación de rutas comerciales de recolección y reportes de eficiencia por zona y período.</p>
+        <div class="sol-link">Ver módulo <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+      </div>
+
+      <div class="sol-card">
+        <div class="sol-tag">Recursos Minerales</div>
+        <div class="sol-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+        <h3>Sistema de Minas</h3>
+        <p>Control de inventarios minerales, fiscalización en tiempo real y emisión digital de guías de transporte para el traslado legal de materiales extraídos.</p>
+        <div class="sol-link">Ver módulo <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+      </div>
+
+      <div class="sol-card" style="grid-column:span 1">
+        <div class="sol-tag">Planificación</div>
+        <div class="sol-icon"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18M15 3v18"/></svg></div>
+        <h3>Módulo 1x1000</h3>
+        <p>Monitoreo estratégico de metas territoriales con tableros en tiempo real, alertas de incumplimiento y reportes ejecutivos para rendir cuentas.</p>
+        <div class="sol-link">Ver módulo <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- SECURITY -->
+<section class="security">
+  <div class="wrap">
+    <div class="eyebrow">Seguridad y Cumplimiento</div>
+    <h2 class="section-title">Sus datos fiscales, protegidos con estándares institucionales</h2>
+    <p class="section-sub">Cada componente de nuestras plataformas fue diseñado desde el principio con la seguridad como prioridad, no como complemento.</p>
+    <div class="sec-grid">
+      <div class="sec-item">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <h4>Cifrado de extremo a extremo</h4>
+        <p>Toda la información viaja cifrada bajo protocolos estándar de la industria. Ningún dato fiscal o civil queda expuesto en tránsito.</p>
+      </div>
+      <div class="sec-item">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <h4>Servidores de alta disponibilidad</h4>
+        <p>Infraestructura con respaldos automáticos y redundancia de servidores para garantizar operación continua sin interrupciones.</p>
+      </div>
+      <div class="sec-item">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <h4>Control de accesos por rol</h4>
+        <p>Administradores, supervisores, recaudadores y ciudadanos tienen vistas y permisos diferenciados según su cargo.</p>
+      </div>
+      <div class="sec-item">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>
+        <h4>Auditoría y trazabilidad total</h4>
+        <p>Cada transacción queda registrada con fecha, hora y usuario. Auditorías internas y externas completas sobre cualquier operación.</p>
+      </div>
+      <div class="sec-item">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <h4>Cumplimiento normativo local</h4>
+        <p>Soluciones desarrolladas alineadas con el marco legal venezolano vigente en materia fiscal, tributaria y de servicios públicos.</p>
+      </div>
+      <div class="sec-item">
+        <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        <h4>Actualizaciones y soporte continuo</h4>
+        <p>Mantenimiento activo, actualizaciones ante cambios normativos y soporte técnico especializado permanente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- CLIENTS -->
+<section class="clients">
+  <div class="wrap">
+    <div class="eyebrow">Organismos que nos confían su gestión</div>
+    <h2 class="section-title">Gobiernos locales que ya operan con Tecno Sistemas Plus</h2>
+    <p style="font-size:14px;color:var(--text-muted);max-width:500px;margin:0 auto">Municipios, alcaldías, gobernaciones y entes de recaudación que han modernizado su administración pública con nuestras plataformas.</p>
+    <div class="clients-grid">
+      <div class="client-slot"><div class="client-placeholder"></div></div>
+      <div class="client-slot"><div class="client-placeholder"></div></div>
+      <div class="client-slot"><div class="client-placeholder"></div></div>
+      <div class="client-slot"><div class="client-placeholder"></div></div>
+    </div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:16px">Referencias institucionales disponibles previa solicitud</p>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- CTA / FORM -->
+<section class="cta-section">
+  <div class="wrap">
+    <div class="cta-box">
+      <div>
+        <div class="eyebrow">Contacto y Demos</div>
+        <h2>¿Listo para transformar la gestión de su institución?</h2>
+        <p>Solicite una demostración personalizada sin costo. Nuestro equipo le mostrará cómo cada módulo se adapta a las necesidades específicas de su alcaldía, gobernación o entidad de recaudación.</p>
+        <div class="trust-items">
+          <div class="trust-item"><div class="trust-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>Sin compromisos de contratación</div>
+          <div class="trust-item"><div class="trust-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>Demo personalizada a su caso de uso</div>
+          <div class="trust-item"><div class="trust-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>Respuesta en menos de 24 horas hábiles</div>
+          <div class="trust-item"><div class="trust-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>Equipo técnico especializado en sector público</div>
+          <div class="trust-item"><div class="trust-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>Información confidencial y protegida</div>
+        </div>
+      </div>
+      <div>
+        <div class="form-row">
+          <div class="form-group"><label>Nombre completo *</label><input type="text" placeholder="Ej. Carlos Mendoza"></div>
+          <div class="form-group"><label>Cargo *</label><input type="text" placeholder="Ej. Director de Hacienda"></div>
+        </div>
+        <div class="form-group"><label>Institución *</label><input type="text" placeholder="Alcaldía / Gobernación / Ministerio"></div>
+        <div class="form-row">
+          <div class="form-group"><label>Correo institucional *</label><input type="email" placeholder="correo@institucion.gob.ve"></div>
+          <div class="form-group"><label>Teléfono *</label><input type="tel" placeholder="+58 412 000 0000"></div>
+        </div>
+        <div class="form-group">
+          <label>Sistema de interés *</label>
+          <select>
+            <option value="">Seleccione un módulo...</option>
+            <option>Taquilla Virtual</option>
+            <option>Timbres Fiscales Digitales</option>
+            <option>Gestión de Desechos Sólidos</option>
+            <option>Sistema de Minas</option>
+            <option>Módulo 1x1000</option>
+            <option>Todos los módulos</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Mensaje o comentarios</label><textarea placeholder="Cuéntenos sobre su necesidad específica..."></textarea></div>
+        <button class="btn-submit">📋 Solicitar Demostración Gratuita</button>
+        <p class="form-privacy">Su información es confidencial y se usa únicamente para coordinar su demostración. No compartimos datos con terceros.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon" style="width:28px;height:28px">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0A1628" stroke-width="2.2" width="16" height="16"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+          </div>
+          <span style="font-size:14px;font-weight:700">Tecno Sistemas Plus</span>
+        </div>
+        <p>Plataformas de Gestión Unificada para Administraciones Públicas. Tecnología que moderniza el Estado.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Soluciones</h5>
+        <a>Taquilla Virtual</a>
+        <a>Timbres Fiscales</a>
+        <a>Desechos Sólidos</a>
+        <a>Sistema de Minas</a>
+        <a>Módulo 1x1000</a>
+      </div>
+      <div class="footer-col">
+        <h5>Empresa</h5>
+        <a>Quiénes Somos</a>
+        <a>Casos de Éxito</a>
+        <a>Seguridad</a>
+        <a>Contacto</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Tecno Sistemas Plus. Todos los derechos reservados.</p>
+      <button class="btn-admin-footer">🔐 Acceso Administrador</button>
+    </div>
+  </div>
+</footer>
